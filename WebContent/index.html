@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Helping Hands</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media='screen'>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
+
+
+<!-- For Validation --> 
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js'></script>
+
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.js'></script>
+
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js'></script>
+
+
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js'></script>
+
+
+
+</head>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	
+
+		
+	 $('#registrationForm').bootstrapValidator({
+	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	        feedbackIcons: {
+	           valid: ' ',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh',
+	            
+	        },
+	        
+	        fields: {
+	        	
+	        	firstname: {
+	               // message: 'The firstname is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter your first name.'
+	                    },
+	                  
+	                    regexp: {
+	                        regexp: /^[a-zA-Z_\.]+$/,
+	                        message: 'The firsname can only consist of alphabetical, underscore and period.'
+	                    },
+	               	           }
+	            },
+	            
+	        	lastname: {
+	             //   message: 'The lastname is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter your lastname.'
+	                    },
+	                  
+	                    regexp: {
+	                        regexp: /^[a-zA-Z_\.]+$/,
+	                        message: 'The lastname can only consist of alphabetical, underscore and period.'
+	                    },
+	               	  }
+	            },
+	    
+	            username: {
+	              //  message: 'The username is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter a username'
+	                    },
+	                    stringLength: {
+	                        min: 6,
+	                        max: 30,
+	                        message: 'The username must be more than 6 and less than 30 characters long'
+	                    },
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_\.]+$/,
+	                        message: 'The username can only consist of alphabetical, number, dot and underscore'
+	                    },
+	                    different: {
+	                        field: 'password',
+	                        message: 'The username and password cannot be the same as each other'
+	                    },
+	                    
+	                }
+	            },
+	          
+	            password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter your password'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: 'The password cannot be the same as username'
+	                    },
+	                stringLength: {
+	                        min: 8,
+	                        max:15,
+	                        message: 'The password must be between 8 and 15 characters.'
+	                    },
+	                   
+	                    regexp: {
+	                        regexp: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/,
+	                        
+	                        message:'Password should be a string that has at least 1 uppercase alphabet,'+
+	                        '1 lowercase alphabet, 2 digits and 1 special character.',
+	                    }
+	                   
+	                }
+	            },
+	            
+	            retypepassword: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please re-type the password'
+	                    },
+	                    identical: {
+	                        field: 'password',
+	                        message: 'The passwords dont match'
+	                    },
+	                    stringLength: {
+	                        min: 8,
+	                        max:15,
+	                        message: 'The password must be between 8 and 15 characters.'
+	                    },
+	                   
+	                    regexp: {
+	                        regexp: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/,
+	                        
+	                        message:'Password should be a string that has at least 1 uppercase alphabet,'+
+	                        '1 lowercase alphabet, 2 digits and 1 special character.',
+	                    }
+	                   
+	                }
+	            },
+	                       
+	            gender: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please select your gender.'
+	                    }
+	                }
+	            },
+	            
+
+	            email: {
+	                validators: {
+	                	 notEmpty: {
+		                        message: 'Please enter your email address'
+		                    },
+	                    emailAddress: {
+	                        message: 'The email address is not valid'
+	                    }
+	                }
+	            },
+	            	
+	            phonenumber: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter your phone number'
+	                    },
+	                    stringLength: {
+	                        min: 10,
+	                        max:10,
+	                        message: 'The phone number must have at 10 digits.'
+	                    },
+	                   
+	                    regexp: {
+		                    regexp: /^[0-9]+$/,                    
+	                        message:'Phone number should not have alphabets',
+	                    } 
+	                   
+	                }
+	            },
+	            
+	            question: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please select your security question language.'
+	                    }
+	                }
+	            },
+	            answer: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please provide an answer for the security question.'
+	                    }
+	                }
+	            },
+	         
+	            }
+	 
+	  
+	    });
+
+	 $('#loginForm').bootstrapValidator({
+	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	        feedbackIcons: {
+	           valid: ' ',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh',
+	            
+	        },
+	        
+	        fields: {
+	            username2: {
+	                message: 'The username is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The username is required and cannot be empty'
+	                    }
+	                }
+	            },
+	          
+	    
+	         password2: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The password is required and cannot be empty'
+	                    }
+	                }
+	            },
+	          
+	            }
+	 
+	  
+	    });
+	 
+	 $('#resetForm').bootstrapValidator({
+	        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	        feedbackIcons: {
+	           valid: ' ',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh',
+	            
+	        },
+	        
+	        fields: {
+	            username3: {
+	                message: 'The username is not valid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The username is required and cannot be empty'
+	                    }	                    
+	                }
+	            },
+	            question2: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please select your security question language.'
+	                    }
+	                }
+	            },
+	            answer2: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please provide an answer for the security question.'
+	                    }
+	                }
+	            },
+	            
+	            newpassword: {
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Please enter your password'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: 'The password cannot be the same as username'
+	                    },
+	                stringLength: {
+	                        min: 8,
+	                        max:15,
+	                        message: 'The password must be between 8 and 15 characters.'
+	                    },
+	                   
+	                    regexp: {
+	                        regexp: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/,
+	                        
+	                        message:'Password should be a string that has at least 1 uppercase alphabet,'+
+	                        '1 lowercase alphabet, 2 digits and 1 special character.',
+	                    }
+	                   
+	                }
+	            },
+	            retypepassword2: {
+	            	  validators: {
+		                    notEmpty: {
+		                        message: 'Please re-type the password'
+		                    },
+		                    identical: {
+		                        field: 'newpassword',
+		                        message: 'The passwords dont match'
+		                    },
+		                    stringLength: {
+		                        min: 8,
+		                        max:15,
+		                        message: 'The password must be between 8 and 15 characters.'
+		                    },
+		                   
+		                    regexp: {
+		                        regexp: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9].*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/,
+		                        
+		                        message:'Password should be a string that has at least 1 uppercase alphabet,'+
+		                        '1 lowercase alphabet, 2 digits and 1 special character.',
+		                    }
+		                   
+		                }
+	            }
+	            }
+	 
+	  
+	    });
+$('#registrationForm').on('success.form.bv', function(e) {
+    // Prevent submit form
+    e.preventDefault();
+
+    var $form     = $(e.target);
+       validator = $form.data('bootstrapValidator');
+
+$.ajax({
+	type:'POST',
+	url:'http://localhost:8080/helpingHands/registerUser.html',
+	
+	
+	success: function(msg){
+		
+		resp='done';
+		
+		switch(resp){
+		case 'done':{
+
+		$form.find('.alert-success').html('Thanks for registring. Now you can sign in as ' +validator.getFieldElements
+
+				('username').val()).show();
+		 $('#registrationForm').bootstrapValidator('resetForm', true);
+		 break;
+			}
+		case 'unavailable username':{
+			
+			$form.find('.alert-danger').html('The username is already taken ' +validator.getFieldElements
+
+					('username').val() + ',<strong> Please choose a different user name</strong>').show();
+			//alert('error');
+			 $('#button1').removeAttr('disabled'); 
+			 break;
+		}
+		case 'error':{
+			$form.find('#msgreg').addClass('.alert-danger').removeClass('.alert-success').html('You have already registered ' +validator.getFieldElements
+
+					('username').val() + ',<strong> Please go to Sign In and enter your login credentials!</strong>').show();
+			//alert('error');
+			 $('#button1').removeAttr('disabled'); 
+			 break;
+			
+		}
+		}
+	},
+	error:function(){
+		
+		
+		$form.find('#msgreg').addClass('.alert-danger').html('The username is already taken ' +validator.getFieldElements
+
+				('username').val() + ',<strong> Please choose a different user name</strong>').show();
+		//alert('error');
+		 $('#button1').removeAttr('disabled'); 
+		
+	}
+
+});
+
+});
+
+$('#loginForm').on('success.form.bv', function(e) {
+    // Prevent submit form
+    e.preventDefault();
+
+    var $form     = $(e.target);
+       validator = $form.data('bootstrapValidator');
+
+$.ajax({
+	type:'POST',
+	url:'http://localhost:8080/helpingHands/userLogin.html',
+	
+	
+	success: function(msg){
+		
+
+		resp='done';
+		
+		if(resp=='done')
+			{
+			
+			alert('You have successfully login as '+validator.getFieldElements('username2').val());
+			
+			
+			window.location = "home.html";
+			
+			 $('#loginForm').bootstrapValidator('resetForm', true);
+
+		}
+		else{
+			
+			$form.find('#msglogin').addClass('.alert-success').html('The username and password ' +validator.getFieldElements
+
+					('username2').val() + ',<strong>do not match</strong>').show();
+			//alert('error');
+			 $('#button2').removeAttr('disabled'); 
+			
+		}
+		
+		//$form.find('.alert').html('You have successfully login as ' +validator.getFieldElements('username2').val()).show();
+		    //   $("#div1").html('Hi');
+			 
+	},
+	error:function(){
+		
+		
+		$form.find('.alert-danger').html('Sorry we are unable to process your request now. ' +validator.getFieldElements
+
+				('username2').val() + ',<strong> please try again later!</strong>').show();
+		//alert('error');
+		 $('#button2').removeAttr('disabled'); 
+		
+	}
+
+});
+
+});
+
+$('#resetForm').on('success.form.bv', function(e) {
+    // Prevent submit form
+    e.preventDefault();
+
+    var $form     = $(e.target);
+       validator = $form.data('bootstrapValidator');
+
+$.ajax({
+	type:'POST',
+	url:'http://localhost:8080/helpingHands/changePassword.html',
+	
+	//concatenate 'http://localhost:8080/helpingHands/ = variable 
+	
+	
+	success: function(msg){
+		alert('You, '+ validator.getFieldElements('username3').val() + "have successfully reset your password").show();
+		
+		$form.find('.alert-success').html('You,' +validator.getFieldElements
+
+				('username3').val()).show();
+		 $('#registrationForm').bootstrapValidator('resetForm', true);
+		
+		//$('#modal-1').fadeOut('fast');
+		
+		//window.location = "index2.html";
+		//$form.find('.alert').html('You have successfully login as ' +validator.getFieldElements('username2').val()).show();
+		    //   $("#div1").html('Hi');
+			 
+	},
+	error:function(){
+		//alert('error');
+		 	
+		 $form.find('.alert-danger').html('Sorry we are unable to process your reset password request now. ' +validator.getFieldElements
+
+					('username3').val() + ',<strong> please try again later!</strong>').show();
+			//alert('error');
+			 $('#button3').removeAttr('disabled'); 
+	}
+	
+
+});
+
+
+});
+
+	  
+
+
+
+
+
+});
+</script>
+
+<style>
+
+.jumbotron{
+ padding:1em 1em;
+}
+
+.jbbg {
+background-color: green ;
+}
+
+
+#topnav{
+min-height:40px !important;
+background-color: darkgreen ;
+}
+
+.navbar-brand .nb{
+color: white;
+}
+
+#brand {
+  text-align: center; 
+  padding-top:60px;
+ }
+
+#brand h1{
+
+ color: white;
+    font-size: 40px;
+ 
+}
+.tooltip > .tooltip-inner {background-color: grey;}
+
+.has-success .form-control{ border-color:grey !important;}
+.has-success .form-control:focus { border-color:grey !important;}
+
+.has-success .control-label{ color:black !important;}
+
+.ui-datepicker-today {
+    background: #fcc !important;
+}
+
+#resetForm{
+ margin: 0 auto;
+    width:80% 
+}
+
+#modtit{
+padding-top:30px;
+text-align:center;
+}
+
+.close{
+ position:absolute;
+        top:10px;
+        right: 10px;
+        font-weight: bold;
+}
+
+.reg{
+
+
+
+}
+
+.fors{
+
+}
+
+#logincontainer{
+border-style: solid;
+    border-color: #ff0000 #0000ff;
+}
+
+#account{
+text-align:center;
+}
+
+.helppills .active a,
+.helppills .active a:hover {
+    background-color: green !important;
+   
+}
+
+.helppills  a:hover {
+    background-color: lightgreen !important;
+    
+}
+
+.btn.btn-default.btn-md.signup{
+background: green !important;
+color: white !important;
+   border-radius: 24px;
+}
+
+.btn.btn-default.btn-md.login{
+background: green !important;
+color: white !important;
+   border-radius: 24px;
+}
+
+.btn.btn-default.btn-md.resetpwd{
+background: green !important;
+color: white !important;
+   border-radius: 24px;
+}
+
+
+</style>
+
+<body>
+
+<nav id ='topnav' class="navbar navbar-inverse navbar-fixed-top " >
+ 	<div class="container">
+		 <nav class="navbar-brand nb">San Jose</nav>
+	</div> 
+</nav>
+	
+	
+	
+<div class="container">
+	<div id='brand' class="jumbotron jbbg">
+     	<div class='clearfix'>
+			<div class="container">
+				<img class='pull-left' id='logo' src='http://localhost:8080/helpingHands/logo.png' width='130' height='130'>
+			<h1>Helping Hands</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+<div class ="row">
+<div class="col-md-6 col-md-offset-6">
+
+<ul class="nav nav-pills helppills">
+<li class="active"><a href="#tab1" data-toggle="pill">Registration</a></li>
+<li ><a href="#tab2" data-toggle="tab">Sign In</a></li>
+</ul>
+
+<div class="tab-content fors">
+<div class="tab-pane active" id="tab1">
+
+    <div class="row">
+        <div class="col-md-12">
+          
+            <!-- Change the "action" attribute to your back-end URL -->
+            <form id="registrationForm" method="post" class="form-horizontal" action="" >
+                
+               
+               
+          <!-- <div class="form-group">         
+           <div class=" col-md-8 col-md-offset-2 alert" id="msgreg" style="display: none;">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+             </div>
+           </div>-->
+
+<div class="form-group">  </div>           
+           <div class="form-group">         
+           <div id='msgreg' class=" col-md-8 col-md-offset-2 alert alert-success fade in" style="display: none;">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+             </div>
+           </div>
+           
+            <div class="form-group">         
+           <div id='msgreg' class=" col-md-8 col-md-offset-2 alert alert alert-danger fade in" style="display: none;">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+           </div>
+           </div>
+           
+           
+              
+            <div class="form-group">
+                    <label class="col-md-4 control-label">First Name<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input id='firstname' type="text" class="form-control" name="firstname" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Last Name<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input id='lastname' type="text" class="form-control" name="lastname" />
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Username<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input id='username' type="text" class="form-control" name="username" />
+                    </div>
+                </div>
+                      
+    
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Password<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" name="password" />
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Retype Password<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" name="retypepassword" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+        <label class="col-md-4 control-label">Gender</label>
+        <div class="col-md-6">
+            <select class="form-control" name="gender">
+                <option value=" "></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+    </div>
+        
+          <div class="form-group">
+        <label class="col-md-4 control-label">Email address<sup>*</sup></label>
+        <div class="col-md-6">
+            <input type='text' class="form-control" name="email"
+                type="email"/>
+        </div>
+    </div>
+        
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">Phone Number<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="phonenumber" />
+                    </div>
+                </div>
+                
+    
+        <div class="form-group">
+            <label class="col-md-4 control-label">Security Question<sup>*</sup></label>
+            <div class="col-md-6 selectContainer">
+                <select name="question" class="form-control">
+                    <option value=""></option>
+                    <option value="q1">What is your Mother's maiden name?</option>
+                </select>
+            </div>
+        </div>
+             
+
+ 				 <div class="form-group">
+                    <label class="col-md-4 control-label">Answer<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input id='answer' type="text" class="form-control" name="answer" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                        <button id='button1' type="submit" class="btn btn-default btn-md signup">Sign up</button>
+                    </div>
+                </div>
+            </form>
+             </div>
+              </div>
+        <div class="row">
+        <div class="col-md-6 col-md-offset-4"><h4>Account Type</h4></div>
+        <br/>
+        <div class="col-md-6 col-md-offset-4">
+             <div  >
+                <label >
+                    <input type="radio" id="student" name="quality[22]" checked="checked" value="1" /> Student
+                </label> 
+                <label >
+                    <input type="radio" id="ngo" name="quality[22]"  value="2" /> NGO
+                </label> 
+             
+            </div>
+       
+    </div>
+        </div>
+
+   
+
+
+</div>
+<div class="tab-pane" id="tab2">
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+          
+            <!-- Change the "action" attribute to your back-end URL -->
+            <form id="loginForm" method="post" class="form-horizontal" action="" >
+            
+              <div class="form-group">         
+           <div class=" col-md-8 col-md-offset-2 alert" id="msglogin" style="display: none;">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+             </div>
+           </div>
+           
+             
+           
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Username<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input id='username' type="text" class="form-control" name="username2" />
+                    </div>
+                </div>
+            
+            
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Password<sup>*</sup></label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" name="password2" />
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <div class="col-md-6 col-lg-offset-4">
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                       <button id='button2' type="submit" class="btn btn-default btn-md login">Login</button>
+                    </div>
+                </div>
+                
+            </form>
+             </div>
+             </div>
+                    <div class="row">
+        <div class="col-md-6 col-md-offset-4"><h4 class="profilelogin">Account Type</h4></div>
+        <br/>
+        <div class="col-md-6 col-md-offset-4">
+            <div  >
+                <label >
+                    <input type="radio" id="student" name="quality[21]" checked="checked" value="1" /> Student
+                </label> 
+                <label >
+                    <input type="radio" id="ngo" name="quality[21]"  value="2" /> NGO
+                </label> 
+                <label >
+                    <input type="radio" id="admin" name="quality[21]" value="3" /> Admin
+                </label> 
+            </div>
+     
+    </div>
+        </div>
+
+ <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-1">Forgot Password?</button>
+        </div>
+        <br/>
+        
+       <div class="modal fade" id="modal-1">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+<div class="model-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 id="modtit" class="modal-title">Reset Password</h4>
+</div>
+<div class="modal-body">
+
+ <form id="resetForm" method="post" class="form-horizontal" action="">
+            
+           
+                <div class="form-group">         
+           <div class=" col-lg-11 alert alert-success fade in" style="display: none;">
+            <!-- 
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            -->
+             <button id="close" data-dismiss="alert" style="float:right;">&times;</button>
+             </div>
+           </div>
+           
+           
+                <div class="form-group">         
+           <div class=" col-lg-11 alert alert-danger fade in" style="display: none;">
+             <a href="#" class="close" data-dismiss="alert">&times;</a>
+             </div>
+           </div>
+          
+           
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Username<sup>*</sup></label>
+                    <div class="col-lg-7">
+                        <input id='username' type="text" class="form-control" name="username3" />
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+            <label class="col-lg-4 control-label">Security Question<sup>*</sup></label>
+            <div class="col-lg-7 selectContainer">
+                <select name="question2" class="form-control">
+                    <option value=""></option>
+                    <option value="q1.2">What is your Mother's maiden name?</option>
+                </select>
+            </div>
+        </div>
+            
+            <div class="form-group">
+                    <label class="col-lg-4 control-label">Answer<sup>*</sup></label>
+                    <div class="col-lg-7">
+                        <input id='answer2' type="text" class="form-control" name="answer2" />
+                    </div>
+                </div>
+         
+    
+             
+    
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">New Password<sup>*</sup></label>
+                    <div class="col-lg-7">
+                        <input type="password" class="form-control" name="newpassword" />
+                    </div>
+                </div>
+                 
+                 <div class="form-group">
+                    <label class="col-lg-4 control-label">Retype Password<sup>*</sup></label>
+                    <div class="col-lg-7">
+                        <input type="password" class="form-control" name="retypepassword2" />
+                    </div>
+                </div>
+    
+             
+
+                <div class="form-group">
+                    <div class="col-lg-5 col-lg-offset-4">
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                        <button id='button3' type="submit" class="btn btn-default btn-md resetpwd">Submit</button>
+                    </div>
+                </div>
+            </form>
+            
+
+            
+<div>
+<div class="modal-footer">
+
+</div>
+</div>
+</div>
+</div>
+       
+        </div>
+   
+</div>
+
+
+</div>
+
+
+
+
+</div>
+</div></div>
+
+
+</div>
+</div>
+
+</body>
+</html>
